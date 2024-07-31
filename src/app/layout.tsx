@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main className="flex min-h-screen">
+        <main className="flex min-h-screen max-w-5xl">
           <nav className="p-4 sm:p-8 border-r border-gray-400 dark:border-gray-800">
             <Link href="/">
               <Image
@@ -35,12 +35,16 @@ export default function RootLayout({
 
             <h2 className="text-lg font-semibold mb-2">Server Actions</h2>
 
-            <Link className="block underline" href="/counter">
+            <Link className="block underline" href="/server-actions-counter">
               Counter
+            </Link>
+
+            <Link className="block underline" href="/server-actions-form">
+              Form
             </Link>
           </nav>
 
-          <div className="p-4 sm:p-8">{children}</div>
+          <div className="p-4 sm:p-8 flex-1">{children}</div>
         </main>
       </body>
     </html>
