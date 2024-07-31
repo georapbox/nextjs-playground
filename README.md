@@ -1,3 +1,7 @@
+# Next.js Playground
+
+This is a playground for Next.js. Its purpose is to test out new features of Next.js and to experiment with different ways of using Next.js or any other technologies that can be used with Next.js.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
