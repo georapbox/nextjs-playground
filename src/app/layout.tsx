@@ -23,7 +23,7 @@ export default function RootLayout({
           <nav className="p-4 sm:p-8 border-r border-gray-400 dark:border-gray-800">
             <Link href="/">
               <Image
-                className="mb-6 inline-block relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
+                className="inline-block relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
                 src="/next.svg"
                 alt="Next.js Logo"
                 width={180}
@@ -33,7 +33,13 @@ export default function RootLayout({
               />
             </Link>
 
-            <h2 className="text-lg font-semibold mb-2">Server Actions</h2>
+            <h2 className="text-lg font-semibold mt-6 mb-2">Data Fetching</h2>
+
+            <Link className="block underline" href="/data-fetching-suspense">
+              Suspense
+            </Link>
+
+            <h2 className="text-lg font-semibold mt-6 mb-2">Server Actions</h2>
 
             <Link className="block underline" href="/server-actions-counter">
               Counter

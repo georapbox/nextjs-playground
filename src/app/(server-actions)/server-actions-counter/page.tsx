@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { Counter } from './Counter';
 
 export const metadata: Metadata = {
