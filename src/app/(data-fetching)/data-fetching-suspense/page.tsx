@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Suspense - Data Fetching'
 };
 
-export default function SuspensePage() {
+export default function Page() {
   return (
     <>
       <h1 className="text-xl font-semibold mb-4">Suspense - Data Fetching</h1>

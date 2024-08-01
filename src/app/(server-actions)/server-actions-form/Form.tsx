@@ -1,13 +1,16 @@
 'use client';
 
-import { useFormStatus, useFormState } from 'react-dom';
+import { useFormState } from 'react-dom';
 import { FieldError } from '@/lib/ui-components/FieldError';
 import { updateUser } from './actions';
 import { SubmitButton } from './SubmitButton';
 import { SubmitMessage } from './SubmitMessage';
 
-export function UserForm() {
-  const [state, formAction] = useFormState(updateUser, null);
+export function Form() {
+  const [state, formAction] = useFormState(updateUser, {
+    errors: null,
+    user: null
+  });
 
   return (
     <form
@@ -42,6 +45,7 @@ export function UserForm() {
 
         <FieldError message={state?.errors?.email?.[0] ?? ''} />
       </div>
+
       {/* Needs to be a separate component for useFormStatus to work: https://react.dev/reference/react-dom/hooks/useFormStatus#useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component */}
       <SubmitButton />
 

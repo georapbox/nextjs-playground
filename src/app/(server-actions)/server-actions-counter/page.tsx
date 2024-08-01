@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'Counter - Server Actions'
 };
 
-export default function CounterPage() {
+export default function Page() {
   return (
     <>
       <h1 className="text-xl font-semibold mb-4">Counter - Server Actions</h1>

@@ -24,11 +24,11 @@ export default function Page() {
         </li>
         <li>
           <a
-            href="https://www.youtube.com/watch?app=desktop&v=EPaLg4U_K1o"
+            href="https://www.youtube.com/watch?v=VLk45JBe8L8"
             target="_blank"
             className="underline"
           >
-            Exploring React 19 Features - use() Hook, Actions & More
+            React Hook Form & React 19 Form Actions
           </a>
         </li>
       </ul>

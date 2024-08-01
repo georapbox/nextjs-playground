@@ -46,7 +46,11 @@ export default function RootLayout({
             </Link>
 
             <Link className="block underline" href="/server-actions-form">
-              Form
+              Form - Vanilla
+            </Link>
+
+            <Link className="block underline" href="/server-actions-form-rhf">
+              Form - RHF
             </Link>
           </nav>
 
