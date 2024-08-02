@@ -66,6 +66,9 @@ export async function onSubmitAction(_: FormState, data: FormData): Promise<Form
     message: {
       type: 'success',
       text: 'Submission successful'
-    }
+    },
+    fields: Object.fromEntries(
+      Object.entries(parsed.data).map(([key, value]) => [key, String(value)])
+    )
   };
 }

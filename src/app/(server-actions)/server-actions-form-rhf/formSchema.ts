@@ -10,6 +10,7 @@ export const formSchema = z.object({
   email: z.string().trim().email({
     message: 'Invalid email address.'
   }),
+  gender: z.string(),
   terms: z
     .boolean()
     .optional()

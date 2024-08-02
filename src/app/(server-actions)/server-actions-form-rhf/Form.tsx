@@ -60,10 +60,10 @@ export function Form() {
         }}
         className="p-4 rounded-lg border border-gray-400 dark:border-gray-600 bg-gray-200 dark:bg-gray-900"
       >
-        <div className="grid grid-flow-row sm:grid-flow-col gap-4 mb-4">
-          <div>
+        <div className="flex flex-col sm:flex-row gap-4 mb-4">
+          <div className="flex-1">
             <label htmlFor="firstName" className="block mb-1 font-semibold">
-              First name
+              First name<sup className="text-red-600 dark:text-red-400">*</sup>
             </label>
 
             <input
@@ -71,15 +71,15 @@ export function Form() {
               id="firstName"
               defaultValue={form.getValues('firstName')}
               {...form.register('firstName')}
-              className="w-full p-1 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded"
+              className="w-full p-2 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded leading-none"
             />
 
             <FieldError message={getErrorMessage('firstName')} />
           </div>
 
-          <div>
+          <div className="flex-1">
             <label htmlFor="lastName" className="block mb-1 font-semibold">
-              Last name
+              Last name<sup className="text-red-600 dark:text-red-400">*</sup>
             </label>
 
             <input
@@ -87,33 +87,57 @@ export function Form() {
               id="lastName"
               defaultValue={form.getValues('lastName')}
               {...form.register('lastName')}
-              className="w-full p-1 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded"
+              className="w-full p-2 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded leading-none"
             />
 
             <FieldError message={getErrorMessage('lastName')} />
           </div>
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="email" className="block mb-1 font-semibold">
-            Email
-          </label>
+        <div className="flex flex-col sm:flex-row gap-4 mb-4">
+          <div className="flex-1">
+            <label htmlFor="email" className="block mb-1 font-semibold">
+              Email<sup className="text-red-600 dark:text-red-400">*</sup>
+            </label>
 
-          <input
-            type="email"
-            id="email"
-            defaultValue={form.getValues('email')}
-            {...form.register('email')}
-            className="w-full p-1 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded"
-          />
+            <input
+              type="email"
+              id="email"
+              defaultValue={form.getValues('email')}
+              {...form.register('email')}
+              className="w-full p-2 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded leading-none"
+            />
 
-          <FieldError message={getErrorMessage('email')} />
+            <FieldError message={getErrorMessage('email')} />
+          </div>
+
+          <div className="flex-1">
+            <label htmlFor="gender" className="block mb-1 font-semibold">
+              Gender
+            </label>
+
+            <select
+              id="gender"
+              defaultValue={form.getValues('gender')}
+              {...form.register('gender')}
+              className="w-full p-2 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded leading-none"
+              style={{ maxHeight: '2.375rem' }}
+            >
+              <option value="">Select...</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+
+            <FieldError message={getErrorMessage('gender')} />
+          </div>
         </div>
 
         <div className="mb-4">
           <input type="checkbox" id="terms" {...form.register('terms')} className="mr-2" />
           <label htmlFor="terms" className="font-semibold">
             I agree to the terms and conditions
+            <sup className="text-red-600 dark:text-red-400">*</sup>
           </label>
           <FieldError message={getErrorMessage('terms')} />
         </div>
