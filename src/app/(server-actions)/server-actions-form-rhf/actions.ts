@@ -2,7 +2,6 @@
 
 import { sleep } from '@/lib/utils/sleep';
 import { formSchema } from './formSchema';
-import { z } from 'zod';
 
 type FormState = {
   message: { type: 'success' | 'error'; text: string };

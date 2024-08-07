@@ -14,7 +14,7 @@ export const formSchema = z.object({
   terms: z
     .boolean()
     .optional()
-    .refine(value => value === true, {
+    .refine(value => value, {
       message: 'You must agree to the terms and conditions.'
     })
 });

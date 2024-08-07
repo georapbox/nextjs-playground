@@ -29,6 +29,8 @@ export function Form() {
       firstName: '',
       lastName: '',
       email: '',
+      gender: '',
+      terms: false,
       ...(state?.fields ?? {})
     }
   });
