@@ -3,11 +3,18 @@
 import { useRef, useTransition, useState, useEffect } from 'react';
 import { useFormState } from 'react-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { useForm, FieldErrors } from 'react-hook-form';
 import { z } from 'zod';
 import { formSchema } from './formSchema';
 import { onSubmitAction } from './actions';
 import { FieldError } from '@/lib/ui-components/FieldError';
+
+const getErrorMessage = (
+  name: keyof z.output<typeof formSchema>,
+  errors: FieldErrors<z.output<typeof formSchema>>
+) => {
+  return errors?.[name]?.message || '';
+};
 
 export function Form() {
   const [jsEnabled, setJsEnabled] = useState(false);
@@ -36,14 +43,6 @@ export function Form() {
   });
 
   const formRef = useRef<HTMLFormElement>(null);
-
-  const getErrorMessage = (name: keyof z.output<typeof formSchema>) => {
-    return (
-      form.formState.errors?.[name]?.message ||
-      // state?.issues?.find(issue => issue.name === name)?.message ||
-      ''
-    );
-  };
 
   const messageColor = state?.message.type === 'success' ? 'green' : 'red';
 
@@ -76,7 +75,7 @@ export function Form() {
               className="w-full p-2 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded leading-none"
             />
 
-            <FieldError message={getErrorMessage('firstName')} />
+            <FieldError message={getErrorMessage('firstName', form.formState.errors)} />
           </div>
 
           <div className="flex-1">
@@ -92,7 +91,7 @@ export function Form() {
               className="w-full p-2 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded leading-none"
             />
 
-            <FieldError message={getErrorMessage('lastName')} />
+            <FieldError message={getErrorMessage('lastName', form.formState.errors)} />
           </div>
         </div>
 
@@ -110,7 +109,7 @@ export function Form() {
               className="w-full p-2 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded leading-none"
             />
 
-            <FieldError message={getErrorMessage('email')} />
+            <FieldError message={getErrorMessage('email', form.formState.errors)} />
           </div>
 
           <div className="flex-1">
@@ -131,7 +130,7 @@ export function Form() {
               <option value="other">Other</option>
             </select>
 
-            <FieldError message={getErrorMessage('gender')} />
+            <FieldError message={getErrorMessage('gender', form.formState.errors)} />
           </div>
         </div>
 
@@ -141,7 +140,7 @@ export function Form() {
             I agree to the terms and conditions
             <sup className="text-red-600 dark:text-red-400">*</sup>
           </label>
-          <FieldError message={getErrorMessage('terms')} />
+          <FieldError message={getErrorMessage('terms', form.formState.errors)} />
         </div>
 
         <button
