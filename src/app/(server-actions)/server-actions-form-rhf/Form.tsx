@@ -9,6 +9,25 @@ import { formSchema } from './formSchema';
 import { onSubmitAction } from './actions';
 import { FieldError } from '@/lib/ui-components/FieldError';
 
+const PasswordError = ({ errors }: { errors: FieldErrors<z.output<typeof formSchema>> }) => {
+  const customErrors = errors?.password?.types?.custom;
+  const types = Array.isArray(customErrors) ? customErrors : [customErrors].filter(Boolean);
+
+  if (types.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="text-red-600 dark:text-red-400 text-sm empty:hidden" aria-live="polite">
+      <ul className="list-inside list-disc">
+        {types.map((type, index) => (
+          <li key={index}>{type}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
 const getErrorMessage = (
   name: keyof z.output<typeof formSchema>,
   errors: FieldErrors<z.output<typeof formSchema>>
@@ -19,6 +38,7 @@ const getErrorMessage = (
 export function Form() {
   const [jsEnabled, setJsEnabled] = useState(false);
   const [formDisabledUntilValid, setFormDisabledUntilValid] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     setJsEnabled(true);
@@ -32,6 +52,8 @@ export function Form() {
 
   const form = useForm<z.output<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    mode: 'onSubmit', // Default is 'onSubmit', available options 'onSubmit' | 'onBlur' | 'onChange' | 'onTouched' | 'all'
+    criteriaMode: 'all',
     defaultValues: {
       firstName: '',
       lastName: '',
@@ -64,7 +86,7 @@ export function Form() {
         <div className="flex flex-col sm:flex-row gap-4 mb-4">
           <div className="flex-1">
             <label htmlFor="firstName" className="block mb-1 font-semibold">
-              First name<sup className="text-red-600 dark:text-red-400">*</sup>
+              First name <sup className="text-red-600 dark:text-red-400">*</sup>
             </label>
 
             <input
@@ -80,7 +102,7 @@ export function Form() {
 
           <div className="flex-1">
             <label htmlFor="lastName" className="block mb-1 font-semibold">
-              Last name<sup className="text-red-600 dark:text-red-400">*</sup>
+              Last name <sup className="text-red-600 dark:text-red-400">*</sup>
             </label>
 
             <input
@@ -98,7 +120,7 @@ export function Form() {
         <div className="flex flex-col sm:flex-row gap-4 mb-4">
           <div className="flex-1">
             <label htmlFor="email" className="block mb-1 font-semibold">
-              Email<sup className="text-red-600 dark:text-red-400">*</sup>
+              Email <sup className="text-red-600 dark:text-red-400">*</sup>
             </label>
 
             <input
@@ -134,10 +156,37 @@ export function Form() {
           </div>
         </div>
 
+        <div className="flex flex-col sm:flex-row gap-4 mb-4">
+          <div className="flex-1">
+            <label htmlFor="password" className="block mb-1 font-semibold">
+              Password <sup className="text-red-600 dark:text-red-400">*</sup>
+            </label>
+
+            <input
+              type={showPassword ? 'text' : 'password'}
+              id="password"
+              defaultValue={form.getValues('password')}
+              {...form.register('password')}
+              className="w-full p-2 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded leading-none"
+            />
+
+            <button
+              type="button"
+              disabled={!jsEnabled}
+              className="text-blue-500 dark:text-blue-400 hover:underline disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:no-underline"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              <small>{showPassword ? 'Hide' : 'Show'} password</small>
+            </button>
+
+            <PasswordError errors={form.formState.errors} />
+          </div>
+        </div>
+
         <div className="mb-4">
           <input type="checkbox" id="terms" {...form.register('terms')} className="mr-2" />
           <label htmlFor="terms" className="font-semibold">
-            I agree to the terms and conditions
+            I agree to the terms and conditions{' '}
             <sup className="text-red-600 dark:text-red-400">*</sup>
           </label>
           <FieldError message={getErrorMessage('terms', form.formState.errors)} />
