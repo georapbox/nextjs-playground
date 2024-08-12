@@ -16,7 +16,7 @@ const MultipleCustomFieldErrors = ({
   errors: FieldErrors<z.output<typeof formSchema>>;
   fieldName: keyof z.output<typeof formSchema>;
 }) => {
-  const customErrors = errors?.password?.types?.custom;
+  const customErrors = errors?.[fieldName]?.types?.custom;
   const types = Array.isArray(customErrors) ? customErrors : [customErrors].filter(Boolean);
 
   if (types.length === 0) {
