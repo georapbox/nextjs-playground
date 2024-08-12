@@ -69,7 +69,7 @@ export const formSchema = z
 
     if (data.password === data.email) {
       ctx.addIssue({
-        message: 'The password should not be the same as the email address',
+        message: 'Password must not be the same as the email address.',
         code: z.ZodIssueCode.custom,
         path: ['password']
       });

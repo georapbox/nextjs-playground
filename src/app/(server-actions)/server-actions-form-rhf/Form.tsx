@@ -9,7 +9,13 @@ import { formSchema } from './formSchema';
 import { onSubmitAction } from './actions';
 import { FieldError } from '@/lib/ui-components/FieldError';
 
-const PasswordError = ({ errors }: { errors: FieldErrors<z.output<typeof formSchema>> }) => {
+const MultipleCustomFieldErrors = ({
+  errors,
+  fieldName
+}: {
+  errors: FieldErrors<z.output<typeof formSchema>>;
+  fieldName: keyof z.output<typeof formSchema>;
+}) => {
   const customErrors = errors?.password?.types?.custom;
   const types = Array.isArray(customErrors) ? customErrors : [customErrors].filter(Boolean);
 
@@ -37,8 +43,9 @@ const getErrorMessage = (
 
 export function Form() {
   const [jsEnabled, setJsEnabled] = useState(false);
-  const [formDisabledUntilValid, setFormDisabledUntilValid] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [clientSideValidationDisabled, setClientSideValidationDisabled] = useState(false);
+  const [formDisabledUntilValid, setFormDisabledUntilValid] = useState(false);
 
   useEffect(() => {
     setJsEnabled(true);
@@ -51,7 +58,7 @@ export function Form() {
   });
 
   const form = useForm<z.output<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+    resolver: clientSideValidationDisabled ? undefined : zodResolver(formSchema),
     mode: 'onSubmit', // Default is 'onSubmit', available options 'onSubmit' | 'onBlur' | 'onChange' | 'onTouched' | 'all'
     criteriaMode: 'all',
     defaultValues: {
@@ -73,6 +80,7 @@ export function Form() {
       <form
         ref={formRef}
         action={formAction}
+        noValidate={true}
         onSubmit={evt => {
           form.handleSubmit(() => {
             startTransition(() => {
@@ -157,7 +165,7 @@ export function Form() {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 mb-4">
-          <div className="flex-1">
+          <div className="flex-1 relative">
             <label htmlFor="password" className="block mb-1 font-semibold">
               Password <sup className="text-red-600 dark:text-red-400">*</sup>
             </label>
@@ -170,16 +178,36 @@ export function Form() {
               className="w-full p-2 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded leading-none"
             />
 
-            <button
-              type="button"
-              disabled={!jsEnabled}
-              className="text-blue-500 dark:text-blue-400 hover:underline disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:no-underline"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              <small>{showPassword ? 'Hide' : 'Show'} password</small>
-            </button>
+            {jsEnabled ? (
+              <button
+                type="button"
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute top-7 right-0 p-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={20}
+                  height={20}
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                >
+                  {showPassword ? (
+                    <>
+                      <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+                      <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
+                    </>
+                  ) : (
+                    <>
+                      <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7 7 0 0 0 2.79-.588M5.21 3.088A7 7 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474z" />
+                      <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12z" />
+                    </>
+                  )}
+                </svg>
+              </button>
+            ) : null}
 
-            <PasswordError errors={form.formState.errors} />
+            <MultipleCustomFieldErrors errors={form.formState.errors} fieldName="password" />
           </div>
         </div>
 
@@ -194,8 +222,18 @@ export function Form() {
 
         <button
           type="submit"
-          disabled={isPending || (!form.formState.isValid && jsEnabled && formDisabledUntilValid)}
           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-500"
+          disabled={
+            // When JavaScript is disabled, `isValid` will always be `false`.
+            // In real life, we wouldn't have a checkbox to disable the form until it's valid (this is provided for demo purposes),
+            // so we need to check if JavaScript is enabled. Otherwise, the form will be disabled.
+            // Try disabling JavaScript in your browser and remove the `jsEnabled && formDisabledUntilValid && !clientSideValidationDisabled` condition.
+            isPending ||
+            (!form.formState.isValid &&
+              jsEnabled &&
+              formDisabledUntilValid &&
+              !clientSideValidationDisabled)
+          }
         >
           {isPending ? 'Submitting...' : 'Submit'}
         </button>
@@ -206,11 +244,11 @@ export function Form() {
           </div>
         ) : null}
 
-        {state?.issues ? (
+        {state?.issues && !isPending ? (
           <div className="text-red-600 dark:text-red-400 text-sm mt-3">
             <ul>
-              {state.issues.map(issue => (
-                <li key={issue.name} className="flex gap-1">
+              {state.issues.map((issue, index) => (
+                <li key={index} className="flex gap-1">
                   {issue.message}
                 </li>
               ))}
@@ -219,13 +257,33 @@ export function Form() {
         ) : null}
       </form>
 
-      <div className={`mt-4 ${jsEnabled ? '' : 'hidden'}`}>
+      <div className="mt-4">
+        <input
+          type="checkbox"
+          id="disableClientSideValidationCheckbox"
+          disabled={!jsEnabled}
+          onChange={() => setClientSideValidationDisabled(!clientSideValidationDisabled)}
+          className="mr-2"
+        />
+
+        <label htmlFor="disableClientSideValidationCheckbox">
+          Disable client-side validation
+          <br />
+          <small>
+            <em>Hint: Better use it on a clean form to avoid confusion.</em>
+          </small>
+        </label>
+      </div>
+
+      <div className="mt-4">
         <input
           type="checkbox"
           id="disabledSubmitCheckbox"
+          disabled={!jsEnabled || clientSideValidationDisabled}
           onChange={() => setFormDisabledUntilValid(!formDisabledUntilValid)}
           className="mr-2"
         />
+
         <label htmlFor="disabledSubmitCheckbox">Disable form until valid</label>
       </div>
     </>
