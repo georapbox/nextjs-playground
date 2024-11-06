@@ -31,7 +31,7 @@ export function Counter(props: Props) {
   };
 
   return (
-    <div className="inline-flex items-center gap-4 border border-gray-400 dark:border-gray-700 bg-gray-200 dark:bg-gray-800 rounded-lg px-5 py-6">
+    <div className="inline-flex items-center gap-4 card">
       <button
         className={`px-4 py-1 rounded-lg bg-gray-500 text-white text-2xl ${isPending ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-700'}`}
         disabled={isPending}

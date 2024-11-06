@@ -89,7 +89,7 @@ export function Form() {
             });
           })(evt);
         }}
-        className="p-4 rounded-lg border border-gray-400 dark:border-gray-600 bg-gray-200 dark:bg-gray-900"
+        className="max-w-4xl card"
       >
         <div className="flex flex-col sm:flex-row gap-4 mb-4">
           <div className="flex-1">
@@ -102,7 +102,7 @@ export function Form() {
               id="firstName"
               defaultValue={form.getValues('firstName')}
               {...form.register('firstName')}
-              className="w-full p-2 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded leading-none"
+              className="input-field leading-none"
             />
 
             <FieldError message={getErrorMessage('firstName', form.formState.errors)} />
@@ -118,7 +118,7 @@ export function Form() {
               id="lastName"
               defaultValue={form.getValues('lastName')}
               {...form.register('lastName')}
-              className="w-full p-2 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded leading-none"
+              className="input-field leading-none"
             />
 
             <FieldError message={getErrorMessage('lastName', form.formState.errors)} />
@@ -136,7 +136,7 @@ export function Form() {
               id="email"
               defaultValue={form.getValues('email')}
               {...form.register('email')}
-              className="w-full p-2 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded leading-none"
+              className="input-field leading-none"
             />
 
             <FieldError message={getErrorMessage('email', form.formState.errors)} />
@@ -151,7 +151,7 @@ export function Form() {
               id="gender"
               defaultValue={form.getValues('gender')}
               {...form.register('gender')}
-              className="w-full p-2 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded leading-none"
+              className="input-field leading-none"
               style={{ maxHeight: '2.375rem' }}
             >
               <option value="">Select...</option>
@@ -175,7 +175,7 @@ export function Form() {
               id="password"
               defaultValue={form.getValues('password')}
               {...form.register('password')}
-              className="w-full p-2 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded leading-none"
+              className="input-field leading-none"
             />
 
             {jsEnabled ? (
@@ -222,7 +222,7 @@ export function Form() {
 
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-500"
+          className="btn-primary"
           disabled={
             // When JavaScript is disabled, `isValid` will always be `false`.
             // In real life, we wouldn't have a checkbox to disable the form until it's valid (this is provided for demo purposes),

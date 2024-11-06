@@ -24,7 +24,7 @@ export async function Users() {
 
   if (!users || !Array.isArray(users)) {
     return (
-      <div className="rounded p-4 bg-slate-100 dark:bg-slate-800 border border-gray-400 mb-3 last:mb-0">
+      <div className="card mb-3 last:mb-0">
         <h3 className="text-red-700 dark:text-red-300">Error fetching users</h3>
       </div>
     );
@@ -33,10 +33,7 @@ export async function Users() {
   return (
     <ul>
       {users.map((user: User) => (
-        <li
-          key={user.id}
-          className="rounded p-4 bg-slate-100 dark:bg-slate-800 border border-gray-400 mb-3 last:mb-0"
-        >
+        <li key={user.id} className="mb-3 last:mb-0 card">
           <h3>{user.name}</h3>
           <p>{user.email}</p>
         </li>

@@ -1,4 +1,5 @@
 import { atom } from 'jotai';
+import { atomWithImmer } from 'jotai-immer';
 
 export type Todo = {
   id: string;
@@ -8,7 +9,7 @@ export type Todo = {
 
 export const filterAtom = atom('all');
 
-export const todosAtom = atom<Todo[]>([
+export const todosAtom = atomWithImmer<Todo[]>([
   {
     id: '1',
     title: 'Learn Jotai',

@@ -13,27 +13,27 @@ export async function Todos() {
 
   if (!todos || !Array.isArray(todos)) {
     return (
-      <div className="bg-slate-100 dark:bg-slate-800 w-full border-collapse border border-slate-400 p-4 rounded">
+      <div className="card">
         <h3 className="text-red-700 dark:text-red-300">Error fetching todos</h3>
       </div>
     );
   }
 
   return (
-    <table className="table-auto bg-slate-100 dark:bg-slate-800 w-full border-collapse border border-slate-400">
+    <table className="w-full table">
       <thead>
         <tr>
-          <th className="border border-slate-400 p-2">Done</th>
-          <th className="border border-slate-400 p-2">Title</th>
+          <th className="table-cell">Done</th>
+          <th className="table-cell">Title</th>
         </tr>
       </thead>
       <tbody>
         {todos.map((todo: Todo) => (
-          <tr key={todo.id} className="odd:bg-slate-200 dark:odd:bg-slate-700">
-            <td className="border border-slate-400 p-2 text-center">
+          <tr key={todo.id} className="odd:bg-gray-200 dark:odd:bg-gray-700">
+            <td className="table-cell text-center">
               <span className="text-xs">{todo.completed ? '✅' : '❌'}</span>
             </td>
-            <td className="border border-slate-400 p-2">{todo.title}</td>
+            <td className="table-cell">{todo.title}</td>
           </tr>
         ))}
       </tbody>

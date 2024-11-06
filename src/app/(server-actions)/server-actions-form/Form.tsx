@@ -13,21 +13,13 @@ export function Form() {
   });
 
   return (
-    <form
-      action={formAction}
-      className="p-4 max-w-[25rem] rounded-lg border border-gray-400 dark:border-gray-600 bg-gray-200 dark:bg-gray-900"
-    >
+    <form action={formAction} className="max-w-lg card">
       <div className="mb-2">
         <label htmlFor="username" className="block mb-1 font-semibold">
           Username
         </label>
 
-        <input
-          type="text"
-          id="username"
-          name="username"
-          className="w-full p-1 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded"
-        />
+        <input type="text" id="username" name="username" className="input-field" />
 
         <FieldError message={state?.errors?.username?.[0] ?? ''} />
       </div>
@@ -40,7 +32,7 @@ export function Form() {
           type="text" // Deliberately set to "text" to demonstrate backend validation
           id="email"
           name="email"
-          className="w-full p-1 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded"
+          className="input-field"
         />
 
         <FieldError message={state?.errors?.email?.[0] ?? ''} />

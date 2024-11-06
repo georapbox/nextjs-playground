@@ -3,22 +3,31 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-rgb: 214, 219, 220;
-
   color-scheme: light dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-rgb: 0, 0, 0;
-  }
+.body {
+  @apply bg-gray-50 dark:bg-gray-950;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
+.input-field {
+  @apply w-full p-2 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded;
+}
+
+.card {
+  @apply p-4 rounded-lg border border-gray-400 dark:border-gray-600 bg-gray-100 dark:bg-gray-900;
+}
+
+.table {
+  @apply table-auto border-collapse bg-gray-100 dark:bg-gray-800 border-gray-400 dark:border-gray-600;
+}
+
+.table-cell {
+  @apply border border-gray-400 border-gray-600 p-2;
+}
+
+.btn-primary {
+  @apply bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-500;
 }
 
 @layer utilities {

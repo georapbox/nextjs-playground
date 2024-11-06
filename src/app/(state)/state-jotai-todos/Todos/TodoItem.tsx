@@ -10,19 +10,23 @@ export const TodoItem = (props: Props) => {
   const setTodos = useSetAtom(todosAtom);
 
   const handleComplete = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    setTodos(prev => {
-      return prev.map(todoItem => {
-        if (todoItem.id === todo.id) {
-          return { ...todoItem, completed: evt.target.checked };
-        }
+    setTodos(draft => {
+      const todoItem = draft.find(item => item.id === todo.id);
 
-        return todoItem;
-      });
+      if (todoItem) {
+        todoItem.completed = evt.target.checked;
+      }
     });
   };
 
   const handleDelete = () => {
-    setTodos(prev => prev.filter(todoItem => todoItem.id !== todo.id));
+    setTodos(draft => {
+      const index = draft.findIndex(item => item.id === todo.id);
+
+      if (index !== -1) {
+        draft.splice(index, 1);
+      }
+    });
   };
 
   return (

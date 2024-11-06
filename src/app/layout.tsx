@@ -18,9 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <main className="flex min-h-screen max-w-5xl">
-          <nav className="p-4 sm:p-8 border-r border-gray-400 dark:border-gray-800">
+      <body className={`body ${inter.className}`}>
+        <main className="grid grid-cols-main-layout min-h-screen max-w-5xl">
+          <nav className="p-4 sm:p-8 border-r border-gray-400 dark:border-gray-600">
             <Link href="/">
               <Image
                 className="inline-block relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
@@ -64,7 +64,7 @@ export default function RootLayout({
             </Link>
           </nav>
 
-          <div className="p-4 sm:p-8 flex-1">{children}</div>
+          <div className="p-4 sm:p-8">{children}</div>
         </main>
       </body>
     </html>

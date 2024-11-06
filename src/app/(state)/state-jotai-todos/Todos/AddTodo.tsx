@@ -16,19 +16,16 @@ export const AddTodo = () => {
       return;
     }
 
-    setTodos(prev => [...prev, { id: crypto.randomUUID(), title: value, completed: false }]);
+    setTodos(draft => {
+      draft.push({ id: crypto.randomUUID(), title: value, completed: false });
+    });
 
     form.reset();
   };
 
   return (
     <form className="mt-4" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="add-todo"
-        placeholder="Add TODO"
-        className="w-full p-1 border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-700 rounded"
-      />
+      <input type="text" name="add-todo" placeholder="Add TODO" className="input-field" />
     </form>
   );
 };
