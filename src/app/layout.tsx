@@ -52,6 +52,12 @@ export default function RootLayout({
             <Link className="block underline" href="/server-actions-form-rhf">
               Form - RHF
             </Link>
+
+            <h2 className="text-lg font-semibold mt-6 mb-2">State</h2>
+
+            <Link className="block underline" href="/state-jotai-counter">
+              Counter - Jotai
+            </Link>
           </nav>
 
           <div className="p-4 sm:p-8 flex-1">{children}</div>
