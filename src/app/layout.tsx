@@ -55,6 +55,10 @@ export default function RootLayout({
 
             <h2 className="text-lg font-semibold mt-6 mb-2">State</h2>
 
+            <Link className="block underline" href="/state-jotai-todos">
+              Todos - Jotai
+            </Link>
+
             <Link className="block underline" href="/state-jotai-counter">
               Counter - Jotai
             </Link>
