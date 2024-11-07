@@ -31,13 +31,20 @@ body {
 }
 
 .btn-primary {
-  @apply bg-blue-500 text-white hover:bg-blue-600 disabled:hover:bg-blue-500;
-}
-
-.btn-secondary {
-  @apply bg-gray-500 text-white hover:bg-gray-600 disabled:hover:bg-gray-500;
+  @apply
+    bg-blue-500 hover:bg-blue-600 disabled:hover:bg-blue-500
+    dark:bg-blue-300 dark:hover:bg-blue-400 dark:disabled:hover:bg-blue-300
+    text-white dark:text-black;
 }
 
 .btn-danger {
-  @apply bg-red-500 text-white hover:bg-red-600 disabled:hover:bg-red-500;
+  @apply
+    bg-red-500 hover:bg-red-600 disabled:hover:bg-red-500
+    dark:bg-red-300 dark:hover:bg-red-400 dark:disabled:hover:bg-red-300
+    text-white dark:text-black;
+}
+
+/* Utils */
+.hide-scrollbars {
+  scrollbar-width: none;
 }

@@ -9,10 +9,17 @@ export default function Home() {
   return (
     <>
       <h1 className="text-xl sm:text-3xl font-semibold mb-4">Next.js Playground</h1>
-
       <p className="text-pretty">
-        This is a playground for testing purposes. You can navigate between pages using the links
-        from the navigation bar on the left.
+        This is a{' '}
+        <a
+          href="https://nextjs.org/"
+          className="text-blue-500 dark:text-blue-300 underline"
+          target="_blank"
+          rel="noreferer"
+        >
+          Next.js
+        </a>{' '}
+        playground for testing purposes.
       </p>
     </>
   );
