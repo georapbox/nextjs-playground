@@ -89,7 +89,7 @@ export function Form() {
             });
           })(evt);
         }}
-        className="max-w-4xl card"
+        className="card max-w-2xl"
       >
         <div className="flex flex-col sm:flex-row gap-4 mb-4">
           <div className="flex-1">
@@ -222,7 +222,7 @@ export function Form() {
 
         <button
           type="submit"
-          className="btn-primary"
+          className="btn btn-primary"
           disabled={
             // When JavaScript is disabled, `isValid` will always be `false`.
             // In real life, we wouldn't have a checkbox to disable the form until it's valid (this is provided for demo purposes),

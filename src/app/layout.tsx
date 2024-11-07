@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Image from 'next/image';
@@ -18,8 +19,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`body ${inter.className}`}>
-        <main className="grid grid-cols-main-layout min-h-screen max-w-5xl">
+      <body className={inter.className}>
+        <main className="grid grid-cols-main-layout min-h-screen">
           <nav className="p-4 sm:p-8 border-r border-gray-400 dark:border-gray-600">
             <Link href="/">
               <Image

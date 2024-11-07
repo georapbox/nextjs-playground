@@ -35,11 +35,7 @@ export const Controls = (props: Props) => {
   };
 
   return (
-    <button
-      type="button"
-      className="px-4 py-1 rounded-lg bg-gray-500 text-white text-2xl hover:bg-gray-700"
-      onClick={handleClick}
-    >
+    <button type="button" className="btn btn-primary text-2xl" onClick={handleClick}>
       {control === 'increment' ? '+' : control === 'decrement' ? '-' : '?'}
     </button>
   );

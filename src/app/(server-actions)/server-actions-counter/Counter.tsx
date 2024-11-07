@@ -32,21 +32,13 @@ export function Counter(props: Props) {
 
   return (
     <div className="inline-flex items-center gap-4 card">
-      <button
-        className={`px-4 py-1 rounded-lg bg-gray-500 text-white text-2xl ${isPending ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-700'}`}
-        disabled={isPending}
-        onClick={decrementCount}
-      >
+      <button disabled={isPending} onClick={decrementCount} className="btn btn-primary text-2xl">
         -
       </button>
 
       <span className="text-lg font-semibold">{views}</span>
 
-      <button
-        className={`px-4 py-1 rounded-lg bg-gray-500 text-white text-2xl ${isPending ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-700'}`}
-        disabled={isPending}
-        onClick={incrementCount}
-      >
+      <button disabled={isPending} onClick={incrementCount} className="btn btn-primary text-2xl">
         +
       </button>
     </div>

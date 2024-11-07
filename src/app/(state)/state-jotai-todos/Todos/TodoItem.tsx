@@ -47,11 +47,7 @@ export const TodoItem = (props: Props) => {
         </label>
       </div>
 
-      <button
-        type="button"
-        className="bg-red-500 text-white rounded p-1 self-center"
-        onClick={handleDelete}
-      >
+      <button type="button" className="btn-danger p-1 rounded self-center" onClick={handleDelete}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="0.9em"

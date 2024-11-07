@@ -13,7 +13,7 @@ export function Form() {
   });
 
   return (
-    <form action={formAction} className="max-w-lg card">
+    <form action={formAction} className="card max-w-xl">
       <div className="mb-2">
         <label htmlFor="username" className="block mb-1 font-semibold">
           Username

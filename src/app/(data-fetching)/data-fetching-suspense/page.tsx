@@ -30,17 +30,23 @@ export default function Page() {
 
       <h2 className="text-lg font-semibold mb-1">Demo</h2>
 
-      <h2 className="text-md font-semibold mb-3">Users</h2>
+      <div className="flex flex-wrap gap-4">
+        <div className="flex-1">
+          <h2 className="text-md font-semibold mb-3">Users</h2>
 
-      <Suspense fallback={<UsersSkeleton count={10} />}>
-        <Users />
-      </Suspense>
+          <Suspense fallback={<UsersSkeleton count={10} />}>
+            <Users />
+          </Suspense>
+        </div>
 
-      <h2 className="text-md font-semibold mb-3 mt-3">Todos</h2>
+        <div className="flex-1">
+          <h2 className="text-md font-semibold mb-3">Todos</h2>
 
-      <Suspense fallback={<TodosSkeleton count={10} />}>
-        <Todos />
-      </Suspense>
+          <Suspense fallback={<TodosSkeleton count={100} />}>
+            <Todos />
+          </Suspense>
+        </div>
+      </div>
     </>
   );
 }

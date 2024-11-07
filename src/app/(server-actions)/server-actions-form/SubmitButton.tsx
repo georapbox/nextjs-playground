@@ -4,7 +4,7 @@ export const SubmitButton = () => {
   const { pending } = useFormStatus();
 
   return (
-    <button type="submit" disabled={pending} className="btn-primary">
+    <button type="submit" disabled={pending} className="btn btn-primary">
       {pending ? 'Submitting...' : 'Submit'}
     </button>
   );
