@@ -1,12 +1,13 @@
 'use client';
 
+import { FormEvent } from 'react';
 import { useSetAtom } from 'jotai';
 import { todosAtom } from './state';
 
 export const AddTodo = () => {
   const setTodos = useSetAtom(todosAtom);
 
-  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     const form = evt.target as HTMLFormElement;

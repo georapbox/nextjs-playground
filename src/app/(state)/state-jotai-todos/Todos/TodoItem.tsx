@@ -1,3 +1,4 @@
+import { ChangeEvent } from 'react';
 import { useSetAtom } from 'jotai';
 import { Todo, todosAtom } from './state';
 
@@ -9,7 +10,7 @@ export const TodoItem = (props: Props) => {
   const { todo } = props;
   const setTodos = useSetAtom(todosAtom);
 
-  const handleComplete = (evt: React.ChangeEvent<HTMLInputElement>) => {
+  const handleComplete = (evt: ChangeEvent<HTMLInputElement>) => {
     setTodos(draft => {
       const todoItem = draft.find(item => item.id === todo.id);
 

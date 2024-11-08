@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Resources } from '@/lib/ui-components/Resources';
+import { Resources } from '@/app/components/Resources';
 import { Counter } from './Counter';
 
 export const metadata: Metadata = {

@@ -7,7 +7,7 @@ import { useForm, FieldErrors } from 'react-hook-form';
 import { z } from 'zod';
 import { formSchema } from './formSchema';
 import { onSubmitAction } from './actions';
-import { FieldError } from '@/lib/ui-components/FieldError';
+import { FieldError } from '@/app/components/FieldError';
 
 const MultipleCustomFieldErrors = ({
   errors,

@@ -1,12 +1,13 @@
 'use client';
 
+import { ChangeEvent } from 'react';
 import { useSetAtom } from 'jotai';
 import { filterAtom } from './state';
 
 export const TodoFilter = () => {
   const setFilter = useSetAtom(filterAtom);
 
-  const handleChange = (evt: React.ChangeEvent<HTMLFormElement>) => {
+  const handleChange = (evt: ChangeEvent<HTMLFormElement>) => {
     const currentFilter = evt.target.value;
     setFilter(currentFilter);
   };

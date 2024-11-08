@@ -44,6 +44,14 @@ body {
     text-white dark:text-black;
 }
 
+.alert {
+  @apply p-4 rounded;
+}
+
+.alert-danger {
+  @apply bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-100;
+}
+
 /* Utils */
 .hide-scrollbars {
   scrollbar-width: none;

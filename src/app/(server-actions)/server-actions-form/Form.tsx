@@ -1,7 +1,7 @@
 'use client';
 
 import { useFormState } from 'react-dom';
-import { FieldError } from '@/lib/ui-components/FieldError';
+import { FieldError } from '@/app/components/FieldError';
 import { updateUser } from './actions';
 import { SubmitButton } from './SubmitButton';
 import { SubmitMessage } from './SubmitMessage';

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
-import { Resources } from '@/lib/ui-components/Resources';
+import { Resources } from '@/app/components/Resources';
 import { UsersSkeleton } from './UsersSkeleton';
 import { Users } from './Users';
 import { TodosSkeleton } from './TodosSkeleton';

@@ -28,7 +28,7 @@ export async function Todos() {
         </tr>
       </thead>
       <tbody>
-        {todos.map((todo: Todo, index) => (
+        {todos.map((todo: Todo) => (
           <tr key={todo.id} className="odd:bg-gray-200 dark:odd:bg-gray-700">
             <td className="table-cell text-center">
               <span className="text-xs">{todo.completed ? '✅' : '❌'}</span>

@@ -23,5 +23,5 @@ export const JotaiDevTools = () => {
     };
   }, []);
 
-  return <DevTools theme={theme} position="bottom-right" isInitialOpen />;
+  return <DevTools theme={theme} position="bottom-right" />;
 };
