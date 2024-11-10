@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { sleep } from '@/lib/utils/sleep';
 
 export async function GET() {
   const data = [
@@ -54,7 +55,7 @@ export async function GET() {
     }
   ];
 
-  await new Promise(resolve => setTimeout(resolve, 250));
+  await sleep(250);
 
   return NextResponse.json(data);
 

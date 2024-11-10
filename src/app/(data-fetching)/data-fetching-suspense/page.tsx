@@ -1,10 +1,8 @@
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
+import { dehydrate } from '@tanstack/react-query';
+import { getQueryClient } from '@/lib/api/queryClient';
 import { Resources } from '@/app/components/Resources';
-import { UsersSkeleton } from './UsersSkeleton';
-import { Users } from './Users';
-import { TodosSkeleton } from './TodosSkeleton';
-import { Todos } from './Todos';
+import ClientPage from './ClientPage';
 
 export const metadata: Metadata = {
   title: 'Suspense - Data Fetching'
@@ -18,29 +16,31 @@ const resources = [
 ];
 
 export default function Page() {
+  const queryClient = getQueryClient();
+
+  queryClient.prefetchQuery({
+    queryKey: ['users'],
+    async queryFn() {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/users`);
+      const data = await res.json();
+      return data;
+    }
+  });
+
+  queryClient.prefetchQuery({
+    queryKey: ['todos'],
+    async queryFn() {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/todos`);
+      const data = await res.json();
+      return data;
+    }
+  });
+
   return (
     <>
       <h1 className="text-xl font-semibold mb-4">Suspense - Data Fetching</h1>
-
       <Resources data={resources} />
-
-      <div className="flex flex-wrap gap-4">
-        <div className="flex-1">
-          <h2 className="text-md font-semibold mb-3">Users</h2>
-
-          <Suspense fallback={<UsersSkeleton count={10} />}>
-            <Users />
-          </Suspense>
-        </div>
-
-        <div className="flex-1">
-          <h2 className="text-md font-semibold mb-3">Todos</h2>
-
-          <Suspense fallback={<TodosSkeleton count={10} />}>
-            <Todos />
-          </Suspense>
-        </div>
-      </div>
+      <ClientPage dehydratedState={dehydrate(queryClient)} />
     </>
   );
 }

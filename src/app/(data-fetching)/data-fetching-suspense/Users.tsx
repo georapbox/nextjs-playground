@@ -1,4 +1,6 @@
-import { sleep } from '@/lib/utils/sleep';
+'use client';
+
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 type User = {
   id: string;
@@ -6,27 +8,39 @@ type User = {
   email: string;
 };
 
-export async function Users() {
-  await sleep(2000);
-  const usersReq = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/users`);
-  const users = await usersReq.json();
+export const Users = () => {
+  const {
+    data: users,
+    error,
+    isRefetching
+  } = useSuspenseQuery({
+    queryKey: ['users'],
+    queryFn: async () => {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/users`);
 
-  if (!users || !Array.isArray(users)) {
-    return (
-      <div className="card mb-3 last:mb-0">
-        <h3 className="text-red-700 dark:text-red-300">Error fetching users</h3>
-      </div>
-    );
-  }
+      if (!res.ok) {
+        throw new Error('Could not fetch users.');
+      }
+
+      const data = await res.json();
+      return data;
+    }
+  });
 
   return (
-    <ul>
-      {users.map((user: User) => (
-        <li key={user.id} className="mb-3 last:mb-0 card">
-          <h3>{user.name}</h3>
-          <p>{user.email}</p>
-        </li>
-      ))}
-    </ul>
+    <>
+      {error ? <div className="alert alert-danger mb-4">Something went wrong.</div> : null}
+
+      {isRefetching ? <p className="mb-4">Refetching in the background...</p> : null}
+
+      <ul>
+        {users.map((user: User) => (
+          <li key={user.id} className="mb-3 last:mb-0 card">
+            <h3>{user.name}</h3>
+            <p>{user.email}</p>
+          </li>
+        ))}
+      </ul>
+    </>
   );
-}
+};

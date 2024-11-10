@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { sleep } from '@/lib/utils/sleep';
 
 export async function GET() {
   const data = [
@@ -54,7 +55,17 @@ export async function GET() {
     }
   ];
 
-  await new Promise(resolve => setTimeout(resolve, 500));
+  await sleep(500);
 
   return NextResponse.json(data);
+
+  // return new NextResponse('', {
+  //   status: 500,
+  //   statusText: 'Internal Server Error'
+  // });
+
+  // return new NextResponse('', {
+  //   status: 404,
+  //   statusText: 'Not Found'
+  // });
 }

@@ -24,7 +24,6 @@ function makeQueryClient() {
 
     queryCache: new QueryCache({
       onError: error => {
-        console.log('QueryCache onError', error);
         if (error && (error as any).status === 500) {
           console.log('500 error occurred', error);
         }
