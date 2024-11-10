@@ -11,7 +11,7 @@ export const SubmitMessage = (props: Props) => {
 
   return user && !pending ? (
     <div className="mt-4">
-      <pre className="bg-gray-300 dark:bg-gray-800 p-2 rounded text-sm">
+      <pre className="bg-neutral-300 dark:bg-neutral-800 p-2 rounded text-sm">
         {JSON.stringify(user, null, 2)}
       </pre>
     </div>

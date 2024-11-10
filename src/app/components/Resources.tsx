@@ -26,7 +26,7 @@ export const Resources = (props: Props) => {
         })}
       </ul>
 
-      <hr className="my-5 border-gray-300 dark:border-gray-600" />
+      <hr className="my-5 border-neutral-300 dark:border-neutral-600" />
     </>
   );
 };

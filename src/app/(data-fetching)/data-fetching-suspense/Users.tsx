@@ -1,25 +1,14 @@
 import { sleep } from '@/lib/utils/sleep';
 
 type User = {
-  id: number;
+  id: string;
   name: string;
-  username: string;
   email: string;
-  address: {
-    street: string;
-    suite: string;
-    city: string;
-    zipcode: string;
-    geo: {
-      lat: string;
-      lng: string;
-    };
-  };
 };
 
 export async function Users() {
   await sleep(2000);
-  const usersReq = await fetch('https://jsonplaceholder.typicode.com/users');
+  const usersReq = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/users`);
   const users = await usersReq.json();
 
   if (!users || !Array.isArray(users)) {

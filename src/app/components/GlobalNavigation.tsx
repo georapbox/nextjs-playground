@@ -29,7 +29,7 @@ const navigation = [
 
 export const GlobalNavigation = () => {
   return (
-    <nav className="border-r border-gray-300 dark:border-gray-600 h-screen overflow-y-auto hide-scrollbars">
+    <nav className="border-r border-neutral-300 dark:border-neutral-600 h-screen overflow-y-auto hide-scrollbars">
       <Link href="/" className="block m-5 sm:m-8 ">
         <Image
           className="inline-block dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"

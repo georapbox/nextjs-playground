@@ -36,7 +36,7 @@ export default function Page() {
         <div className="flex-1">
           <h2 className="text-md font-semibold mb-3">Todos</h2>
 
-          <Suspense fallback={<TodosSkeleton count={100} />}>
+          <Suspense fallback={<TodosSkeleton count={10} />}>
             <Todos />
           </Suspense>
         </div>

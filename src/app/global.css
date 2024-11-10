@@ -7,23 +7,23 @@
 }
 
 body {
-  @apply bg-gray-50 dark:bg-gray-950 text-black dark:text-white;
+  @apply bg-white dark:bg-neutral-950 text-black dark:text-white;
 }
 
 .input-field {
-  @apply w-full p-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded;
+  @apply w-full p-2 border border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-700 rounded;
 }
 
 .card {
-  @apply p-4 rounded border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-900;
+  @apply p-4 rounded border border-neutral-300 dark:border-neutral-600 bg-neutral-100 dark:bg-neutral-900;
 }
 
 .table {
-  @apply table-auto border-collapse bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-600;
+  @apply table-auto border-collapse bg-neutral-100 dark:bg-neutral-800 border-neutral-300 dark:border-neutral-600;
 }
 
 .table-cell {
-  @apply border border-gray-300 dark:border-gray-600 p-2;
+  @apply border border-neutral-300 dark:border-neutral-600 p-2;
 }
 
 .btn {
@@ -50,6 +50,10 @@ body {
 
 .alert-danger {
   @apply bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-100;
+}
+
+.link {
+  @apply text-blue-500 dark:text-blue-300 underline;
 }
 
 /* Utils */
