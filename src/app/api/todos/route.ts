@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { sleep } from '@/lib/utils/sleep';
 
 export async function GET() {
+  // eslint-disable-next-line no-unused-vars
   const data = [
     {
       id: '1',

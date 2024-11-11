@@ -1,6 +1,8 @@
 'use client';
 
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { Spinner } from '@/app/components/Spinner';
+import { HttpError } from '@/lib/api/http-error';
 
 type Todo = {
   id: string;
@@ -12,6 +14,7 @@ export const Todos = () => {
   const {
     data: todos,
     error,
+    isError,
     isRefetching
   } = useSuspenseQuery({
     queryKey: ['todos'],
@@ -19,7 +22,12 @@ export const Todos = () => {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/todos`);
 
       if (!res.ok) {
-        throw new Error('Could not fetch todos.');
+        if (res.status === 500) {
+          throw new HttpError('500 on todos', res.status);
+        }
+        if (res.status === 404) {
+          throw new HttpError('404 on todos', res.status);
+        }
       }
 
       const data = await res.json();
@@ -29,9 +37,18 @@ export const Todos = () => {
 
   return (
     <>
-      {error ? <div className="alert alert-danger mb-4">Something went wrong.</div> : null}
+      <h2 className="text-md font-semibold mb-3">
+        Todos
+        {isRefetching ? (
+          <Spinner className="inline ms-2 text-lg text-blue-500 dark:text-blue-300" />
+        ) : null}
+      </h2>
 
-      {isRefetching ? <p className="mb-4">Refetching in the background...</p> : null}
+      {isError && !isRefetching ? (
+        <div className="alert alert-danger mb-4">
+          Something went wrong. {error?.message || 'Unknown error'}
+        </div>
+      ) : null}
 
       <table className="w-full table">
         <thead>

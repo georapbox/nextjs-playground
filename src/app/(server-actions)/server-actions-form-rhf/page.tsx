@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const resources = [
   {
-    title: 'Next.js documentation',
+    title: 'Data Fetching: Server Actions and Mutations | Next.js',
     link: 'https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations#forms'
   },
   {

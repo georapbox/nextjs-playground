@@ -58,12 +58,12 @@ export async function GET() {
 
   await sleep(250);
 
-  return NextResponse.json(data);
+  // return NextResponse.json(data);
 
-  // return new NextResponse('', {
-  //   status: 500,
-  //   statusText: 'Internal Server Error'
-  // });
+  return new NextResponse('', {
+    status: 500,
+    statusText: 'Internal Server Error'
+  });
 
   // return new NextResponse('', {
   //   status: 404,

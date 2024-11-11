@@ -4,7 +4,10 @@ import Link from 'next/link';
 const navigation = [
   {
     category: 'Data Fetching',
-    links: [{ title: 'Suspense', href: '/data-fetching-suspense' }]
+    links: [
+      { title: 'Suspense', href: '/data-fetching-suspense' },
+      { title: 'Error Handling', href: '/data-fetching-error-handling' }
+    ]
   },
   {
     category: 'Server Actions',
@@ -20,10 +23,6 @@ const navigation = [
       { title: 'Todos', href: '/state-jotai-todos' },
       { title: 'Counter', href: '/state-jotai-counter' }
     ]
-  },
-  {
-    category: 'Error Handling',
-    links: [{ title: 'Unhandled errors', href: '/error-handling-unhandled-errors' }]
   }
 ];
 

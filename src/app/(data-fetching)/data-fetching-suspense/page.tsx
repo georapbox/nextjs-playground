@@ -4,13 +4,15 @@ import { getQueryClient } from '@/lib/api/queryClient';
 import { Resources } from '@/app/components/Resources';
 import ClientPage from './ClientPage';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Suspense - Data Fetching'
 };
 
 const resources = [
   {
-    title: 'Next.js documentation',
+    title: 'Routing: Loading UI and Streaming | Next.js',
     link: 'https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense'
   }
 ];
