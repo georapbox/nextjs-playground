@@ -29,6 +29,8 @@ export const Users = () => {
         if (res.status === 404) {
           throw new HttpError('Not Found', 404);
         }
+
+        throw new HttpError('An error occurred', res.status);
       }
 
       const data = await res.json();

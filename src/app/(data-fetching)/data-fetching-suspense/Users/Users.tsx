@@ -25,9 +25,12 @@ export const Users = () => {
         if (res.status === 500) {
           throw new HttpError('500 on users', res.status);
         }
+
         if (res.status === 404) {
           throw new HttpError('404 on users', res.status);
         }
+
+        throw new HttpError('An error occurred', res.status);
       }
 
       const data = await res.json();

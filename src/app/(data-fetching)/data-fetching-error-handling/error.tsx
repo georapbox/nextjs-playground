@@ -40,17 +40,7 @@ export default function Error({
 
       {' | '}
 
-      <button
-        type="button"
-        className="link"
-        onClick={() => {
-          queryClient.resetQueries({
-            queryKey: ['users-with-error']
-          });
-
-          reset();
-        }}
-      >
+      <button type="button" className="link" onClick={() => reset()}>
         Try again
       </button>
     </main>
