@@ -6,8 +6,10 @@ import ClientPage from './ClientPage';
 
 export const dynamic = 'force-dynamic';
 
+const PAGE_TITLE = 'Suspense - Data Fetching';
+
 export const metadata: Metadata = {
-  title: 'Suspense - Data Fetching'
+  title: PAGE_TITLE
 };
 
 const resources = [
@@ -40,7 +42,7 @@ export default function Page() {
 
   return (
     <>
-      <h1 className="text-xl font-semibold mb-4">Suspense - Data Fetching</h1>
+      <h1 className="text-xl font-semibold mb-4">{PAGE_TITLE}</h1>
       <Resources data={resources} />
       <ClientPage dehydratedState={dehydrate(queryClient)} />
     </>

@@ -8,8 +8,10 @@ import { Spinner } from '@/app/components/Spinner';
 
 export const dynamic = 'force-dynamic';
 
+const PAGE_TITLE = 'Error Handling - Data Fetching';
+
 export const metadata: Metadata = {
-  title: 'Error Handling - Data Fetching'
+  title: PAGE_TITLE
 };
 
 const resources = [
@@ -59,7 +61,7 @@ export default function Page() {
 
   return (
     <>
-      <h1 className="text-xl font-semibold mb-4">Error Handling - Data Fetching</h1>
+      <h1 className="text-xl font-semibold mb-4">{PAGE_TITLE}</h1>
       <Resources data={resources} />
 
       <HydrationBoundary state={dehydrate(queryClient)}>

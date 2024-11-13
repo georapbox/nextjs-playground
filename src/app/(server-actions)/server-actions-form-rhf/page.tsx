@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import { Resources } from '@/app/components/Resources';
 import { Form } from './Form';
 
+const PAGE_TITLE = 'Form - Server Actions';
+
 export const metadata: Metadata = {
-  title: 'Form - Server Actions'
+  title: PAGE_TITLE
 };
 
 const resources = [
@@ -20,7 +22,7 @@ const resources = [
 export default function Page() {
   return (
     <>
-      <h1 className="text-xl font-semibold mb-4">Form - Server Actions</h1>
+      <h1 className="text-xl font-semibold mb-4">{PAGE_TITLE}</h1>
       <Resources data={resources} />
       <Form />
     </>

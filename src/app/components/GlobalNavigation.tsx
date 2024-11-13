@@ -1,3 +1,6 @@
+'use client';
+
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -23,10 +26,19 @@ const navigation = [
       { title: 'Todos', href: '/state-jotai-todos' },
       { title: 'Counter', href: '/state-jotai-counter' }
     ]
+  },
+  {
+    category: 'Flash Messages',
+    links: [
+      { title: 'Client', href: '/flash-message-client' },
+      { title: 'Server', href: '/flash-message-server' }
+    ]
   }
 ];
 
 export const GlobalNavigation = () => {
+  const pathname = usePathname();
+
   return (
     <nav className="border-r border-neutral-300 dark:border-neutral-600 h-screen overflow-y-auto hide-scrollbars">
       <Link href="/" className="block m-5 sm:m-8 ">
@@ -49,7 +61,7 @@ export const GlobalNavigation = () => {
             {links.map(({ title, href }) => (
               <li key={href}>
                 <Link
-                  className="underline hover:text-blue-500 dark:hover:text-blue-300 px-3 py-1"
+                  className={`underline hover:text-blue-500 dark:hover:text-blue-300 px-3 py-1 ${pathname.startsWith(href) ? 'text-blue-500 dark:text-blue-300' : ''}`}
                   href={href}
                 >
                   {title}
