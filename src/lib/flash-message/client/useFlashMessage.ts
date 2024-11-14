@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { getFlashMessageClient, setFlashMessageClient } from '../client/client';
-import { FlashMessageOptions } from '../config';
+import { clientGetFlashMessage, clientSetFlashMessage } from './clientFlashMessage';
+import type { FlashMessageSchema } from '../config';
 
 export const useFlashMessage = () => {
-  const [flashMessage, setFlashMessage] = useState<FlashMessageOptions | null>(null);
+  const [flashMessage, setFlashMessage] = useState<FlashMessageSchema | null>(null);
 
   useEffect(() => {
-    const flash = getFlashMessageClient();
+    const flash = clientGetFlashMessage();
 
     if (!flash) {
       return;
@@ -17,6 +17,6 @@ export const useFlashMessage = () => {
 
   return {
     flashMessage,
-    setFlashMessage: setFlashMessageClient
+    setFlashMessage: clientSetFlashMessage
   };
 };

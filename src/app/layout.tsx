@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { Provider as JotaiProvider } from 'jotai';
 import { ReactQueryProvider } from '@/lib/api/client/providers/ReactQueryProvider';
 import { GlobalLayout } from './components/GlobalLayout';
 import { JotaiDevTools } from './components/JotaiDevTools';
@@ -21,10 +22,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <JotaiDevTools />
-        <GlobalLayout>
-          <ReactQueryProvider>{children}</ReactQueryProvider>
-        </GlobalLayout>
+        <JotaiProvider>
+          <JotaiDevTools />
+          <GlobalLayout>
+            <ReactQueryProvider>{children}</ReactQueryProvider>
+          </GlobalLayout>
+        </JotaiProvider>
       </body>
     </html>
   );

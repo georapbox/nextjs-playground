@@ -48,7 +48,7 @@ export const Todos = () => {
       </h2>
 
       {isError && !isRefetching ? (
-        <div className="alert alert-danger mb-4">
+        <div className="alert alert-error mb-4">
           Something went wrong. {error?.message || 'Unknown error'}
         </div>
       ) : null}

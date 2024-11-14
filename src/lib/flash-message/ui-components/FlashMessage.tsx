@@ -1,41 +1,43 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { FlashMessageOptions } from '../config';
-import { getFlashMessageClient } from '../client/client';
-// import { getFlashMessageServer } from '../server/server';
-// import { useFlashMessage } from '../client/useFlashMessage';
+import { useState } from 'react';
+// import type { FlashMessageSchema } from '../config';
+// import { clientGetFlashMessage } from '../client/clientFlashMessage';
+// import { serverGetFlashMessage } from '../server/serverFlashMessage';
+import { useFlashMessage } from '../client/useFlashMessage';
 
 export const FlashMessage = () => {
-  const [flashMessage, setFlashMessage] = useState<FlashMessageOptions | null>(null);
-
+  /**
+   * Get flash message from server.
+   */
+  // const [flashMessage, setFlashMessage] = useState<FlashMessageSchema | null>(null);
   // useEffect(() => {
-  //   getFlashMessageServer().then(flash => {
-  //     if (!flash) {
-  //       return;
-  //     }
-
+  //   serverGetFlashMessage().then(flash => {
+  //     if (!flash) return;
   //     setFlashMessage(flash);
   //   });
   // }, []);
 
-  useEffect(() => {
-    const flash = getFlashMessageClient();
+  /**
+   * Get flash message from client
+   */
+  // const [flashMessage, setFlashMessage] = useState<FlashMessageSchema | null>(null);
+  // useEffect(() => {
+  //   const flash = clientGetFlashMessage();
+  //   if (!flash) return;
+  //   setFlashMessage(flash);
+  // }, []);
 
-    if (!flash) {
-      return;
-    }
+  /**
+   * Get flash message from useFlashMessage hook
+   */
+  const { flashMessage } = useFlashMessage();
+  const [showMessage, setShowMessage] = useState(true);
 
-    setFlashMessage(flash);
-  }, []);
-
-  // const { flashMessage } = useFlashMessage();
-  // const [showMessage, setShowMessage] = useState(true);
-
-  return flashMessage ? (
-    <div className={`alert alert-${flashMessage.variant} mb-4`}>
+  return flashMessage && showMessage ? (
+    <div className={`alert alert-${flashMessage.severity} mb-4`}>
       {flashMessage.message}
-      <button type="button" className="p-2" onClick={() => setFlashMessage(null)}>
+      <button type="button" className="p-2" onClick={() => setShowMessage(false)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1em"

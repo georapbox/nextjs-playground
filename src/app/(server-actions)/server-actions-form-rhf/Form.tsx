@@ -5,9 +5,10 @@ import { useFormState } from 'react-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, FieldErrors } from 'react-hook-form';
 import { z } from 'zod';
+import { Spinner } from '@/app/components/Spinner';
+import { FieldError } from '@/app/components/FieldError';
 import { formSchema } from './formSchema';
 import { onSubmitAction } from './actions';
-import { FieldError } from '@/app/components/FieldError';
 
 const MultipleCustomFieldErrors = ({
   errors,
@@ -222,7 +223,7 @@ export function Form() {
 
         <button
           type="submit"
-          className="btn btn-primary"
+          className="btn btn-primary flex gap-2 items-center"
           disabled={
             // When JavaScript is disabled, `isValid` will always be `false`.
             // In real life, we wouldn't have a checkbox to disable the form until it's valid (this is provided for demo purposes),
@@ -235,7 +236,8 @@ export function Form() {
               !clientSideValidationDisabled)
           }
         >
-          {isPending ? 'Submitting...' : 'Submit'}
+          {isPending ? <Spinner /> : null}
+          Submit
         </button>
 
         {state?.message.text !== '' && !state.issues && !isPending ? (
